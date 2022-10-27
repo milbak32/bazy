@@ -1,0 +1,5 @@
+1.CREATE TABLE walizka (id_walizka int not null auto_increment primary key, pojemnosc int UNSIGNED, kolor enum('rozowy', 'czerwony', 'teczowy', 'zolty'));
+ALTER TABLE walizka ADD COLUMN id_wlasciciela int;
+ALTER TABLE walizka ADD CONSTRAINT FOREIGN KEY(id_wlasciciela) REFERENCES postac(id_postaci) ON DELETE CASCADE;
+2.ALTER TABLE walizka ALTER COLUMN kolor SET DEFAULT 'rozowy';
+
