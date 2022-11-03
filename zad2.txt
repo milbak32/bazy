@@ -2,4 +2,10 @@
 ALTER TABLE walizka ADD COLUMN id_wlasciciela int;
 ALTER TABLE walizka ADD CONSTRAINT FOREIGN KEY(id_wlasciciela) REFERENCES postac(id_postaci) ON DELETE CASCADE;
 2.ALTER TABLE walizka ALTER COLUMN kolor SET DEFAULT 'rozowy';
-
+INSERT INTO walizka VALUES(null,50,'czerwony',1);
+INSERT INTO walizka VALUES(null,40,null,3);
+3.CREATE TABLE izba(adres_budynku varchar(30),nazwa_izby varchar(30), CONSTRAINT pk_izba PRIMARY KEY(adres_budynku,nazwa_izby),metraz int UNSIGNED,wlasciciel int);
+ALTER TABLE izba ADD FOREIGN KEY (wlasciciel) REFERENCES postac(id_postaci) ON DELETE SET NULL;
+ALTER TABLE izba ADD COLUMN  kolor enum('czarny','bialy','rozowy','teczowy') DEFAULT('czarny') AFTER metraz;
+INSERT INTO izba VALUES('Kolorowa 2','spizarnia','20','bialy','1');
+4.
