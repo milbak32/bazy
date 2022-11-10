@@ -1,0 +1,42 @@
+1.
+CREATE TABLE walizka (id_walizka int not null auto_increment primary key, pojemnosc int UNSIGNED, kolor enum('rozowy', 'czerwony', 'teczowy', 'zolty'));
+ALTER TABLE walizka ADD COLUMN id_wlasciciela int;
+ALTER TABLE walizka ADD CONSTRAINT FOREIGN KEY(id_wlasciciela) REFERENCES postac(id_postaci) ON DELETE CASCADE;
+2.
+ALTER TABLE walizka ALTER COLUMN kolor SET DEFAULT 'rozowy';
+INSERT INTO walizka VALUES(null,50,'czerwony',1);
+INSERT INTO walizka VALUES(null,40,null,3);
+3.
+CREATE TABLE izba(adres_budynku varchar(30),nazwa_izby varchar(30), CONSTRAINT pk_izba PRIMARY KEY(adres_budynku,nazwa_izby),metraz int UNSIGNED,wlasciciel int);
+ALTER TABLE izba ADD FOREIGN KEY (wlasciciel) REFERENCES postac(id_postaci) ON DELETE SET NULL;
+ALTER TABLE izba ADD COLUMN  kolor enum('czarny','bialy','rozowy','teczowy') DEFAULT('czarny') AFTER metraz;
+INSERT INTO izba VALUES('Kolorowa 2','spizarnia','20','bialy','1');
+ALTER TABLE izba ADD COLUMN spizarnia varchar(40);
+4.
+CREATE TABLE przetwory(id_przetworu int not null PRIMARY KEY auto_increment, rok_produkcji DATE DEFAULT '1654-01-01', id_wykonawcy int,CONSTRAINT fk_wykonawca FOREIGN KEY (id_wykonawcy) REFERENCES postac(id_postaci), zawartosc varchar(50), dodatek varchar(8
+0) DEFAULT 'papryczka chilli', id_konsumenta int, CONSTRAINT fk_konsument FOREIGN KEY (id_konsumenta) REFERENCES postac(id_postaci));
+4.2.
+INSERT INTO przetwory(zawartosc) VALUES ('bigos');
+5. 
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Alf','wiking','1685-06-06','32');
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Aki','wiking','1675-06-06','42');
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Gunnar','wiking','1672-06-06','45');
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Haki','wiking','1687-04-21','30');
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Haki','wiking','1681-05-16','36');
+2.
+CREATE TABLE statek(nazwa_statku  int PRIMARY KEY not null auto_increment, rodzaj_statku enum('szybki','duzy','maly'), data_wodowania date, max_ladownosc int unsigned);
+3.INSERT INTO statek VALUES ('arka','duzy','1667-03-06','400');
+INSERT INTO statek VALUES ('bobo','szybki','1668-06-21','100');
+4.
+ALTER TABLE postac ADD COLUMN funkcja varchar(40);
+5.
+UPDATE postac SET funkcja = 'kapitan' WHERE nazwa = 'Bjorn';
+6.
+7.
+8.
+ALTER TABLE izba DROP spizarnia;
+9.DROP TABLE izba;
+
+
+
+
