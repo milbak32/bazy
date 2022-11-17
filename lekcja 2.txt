@@ -1,0 +1,34 @@
+1.a
+DELETE FROM postac WHERE wiek>50 AND NOT nazwa='Bjorn';
+.b
+ALTER TABLE postac MODIFY id_postaci int;
+ALTER TABLE przetwory DROP FOREIGN KEY fk_konsument;
+ALTER TABLE przetwory DROP FOREIGN KEY fk_wykonawca;
+ALTER TABLE postac MODIFY id_postaci int DEFAULT null;
+ALTER TABLE postac DROP PRIMARY KEY;
+
+2.a
+ALTER TABLE postac ADD COLUMN pesel int(11) PRIMARY KEY auto_increment;
+b.
+ALTER table postac MODIFY rodzaj enum('wiking','ptak','kobieta','syrena');
+c.
+INSERT INTO postac(nazwa,rodzaj) VALUES ('Gertruda Nieszczera','syrena');
+3
+a.
+UPDATE postac SET statek = 'bobo' WHERE nazwa LIKE '%a%';
+b.
+UPDATE statek SET max_ladownosc='30' WHERE data_wodowania>'1900-01-01';
+c.
+SELECT * FROM postac WHERE wiek>1000;
+
+4
+a.
+INSERT INTO postac(nazwa) VALUES ('Loko');
+b.
+create table marynarz(id_postaci int, nazwa varchar(40),rodzaj enum('wiking','ptak','kobieta','syrena'), data_ur date, wiek int unsigned, funkcja varchar(40), statek varchar(40), pesel int);
+c.
+insert into marynarz select * from postac where statek is not null;
+
+
+
+
