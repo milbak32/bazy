@@ -22,13 +22,15 @@ c.
 SELECT * FROM postac WHERE wiek>1000;
 
 4
-a.
 INSERT INTO postac(nazwa) VALUES ('Loko');
-b.
 create table marynarz(id_postaci int, nazwa varchar(40),rodzaj enum('wiking','ptak','kobieta','syrena'), data_ur date, wiek int unsigned, funkcja varchar(40), statek varchar(40), pesel int);
-c.
 insert into marynarz select * from postac where statek is not null;
 
 
-
+5. 
+UPDATE marynarz SET statek='NULL';
+DELETE FROM marynarz WHERE rodzaj='wiking' AND nazwa LIKE='%GERTRUDA%';
+ALTER TABLE marynarz DROP statek;
+CREATE TABLE zwierz(id_zwierza int AUTO_INCREMENT PRIMARY KEY,nazwa varchar(40), wiek int);
+INSERT INTO zwierz SELECT nazwa FROM postac WHERE rodzaj='syrena' OR rodzaj='waz';
 
