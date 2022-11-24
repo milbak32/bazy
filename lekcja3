@@ -1,0 +1,7 @@
+1.
+CREATE TABLE kreatura AS SELECT * FROM wikingowie.kreatura;
+CREATE TABLE zasob AS SELECT * FROM wikingowie.zasob;
+CREATE TABLE ekwipunek AS SELECT * FROM wikingowie.ekwipunek;
+1.2 
+SELECT * FROM zasob;
+SELECT * FROM zasob WHERE rodzaj='jedzenie';
