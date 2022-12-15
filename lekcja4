@@ -15,6 +15,10 @@ SELECT kreatura.nazwa FROM kreatura LEFT JOIN ekwipunek ON kreatura.idKreatury =
 
 4.
 SELECT kreatura.nazwa,zasob.nazwa FROM kreatura INNER JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON  ekwipunek.idZasobu = zasob.idZasobu GROUP BY kreatura.nazwa;
-
 SELECT kreatura.nazwa,kreatura.dataUr,zasob.rodzaj FROM kreatura INNER JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu  WHERE zasob.rodzaj = 'jedzenie' ORDER BY
 dataUr desc LIMIT 5;
+SELECT CONCAT(kre.idKreatury, ' - ', kre2.idKreatury) AS id_kreatur, CONCAT(kre.nazwa, ' - ', kre2.nazwa) AS nazwa_kreatur FROM kreatura AS kre JOIN kreatura AS kre2 ON kre.idKreatury+5 = kre2.idKreatury;
+
+5.
+SELECT kreatura.rodzaj, AVG(zasob.waga) FROM kreatura INNER JOIN ekwipunek on kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE kreatura.rodzaj != 'malpa' AND kreatura.rodzaj !='waz' GROUP BY kreatura.rodzaj HAVING SUM(ekwipunek.ilosc)<30;
+SELECT rodzaj, CONCAT(nazwa," ", MIN(dataUr)) AS najmlodsze_kreatury, CONCAT(nazwa," ",MAX(dataUr)) AS najstarsze_kreatury FROM kreatura GROUP BY rodzaj;
